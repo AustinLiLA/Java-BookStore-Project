@@ -2,6 +2,7 @@ package com.ab.services;
 
 import java.util.List;
 
+import com.ab.daos.BasketDAO;
 import com.ab.daos.BookDAO;
 import com.ab.daos.UserDAO;
 import com.ab.models.Basket;
@@ -13,6 +14,13 @@ public class UserServiceImpl implements UserService{
 	private UserDAO userDAO; //Has-a relationship
 
 	private BookDAO bookDAO; // Has a relationship
+	
+	private BasketDAO basketDAO;
+	
+public UserServiceImpl(BasketDAO basketDAO) {
+		
+		this.basketDAO = basketDAO;
+	}
 	
 	public UserServiceImpl(UserDAO userDAO) {
 		
@@ -53,9 +61,15 @@ public class UserServiceImpl implements UserService{
 		return this.bookDAO.AddBooks(bookISBN, title,price);
 	}
 	@Override
-	public List<Basket> AddProcess() {
+	public List<Books> AddToBasket(int bookISBN, String title, float price, int quantity) {
 		// TODO Auto-generated method stub
-		return this.bookDAO.AddProcess();
+		return BookDAO.AddToBasket(bookISBN, title, price, quantity);
+	}
+
+	@Override
+	public List<User> viewDetail(String userEmail) {
+		// TODO Auto-generated method stub
+		return this.userDAO.viewDetail(userEmail);
 	}
 	
 	

@@ -20,9 +20,15 @@ public class BookDatabaseDAOImpl implements BookDAO{
 	
     private PreparedStatement pst;
 	
-  
-	private ResultSet rs;
+    private PreparedStatement pst2;
+    
+    private PreparedStatement pst3;
 	
+    private ResultSet rs;
+	
+    private ResultSet rs1;
+    
+    private ResultSet rs2;
 
 	
 	@Override
@@ -227,22 +233,60 @@ public class BookDatabaseDAOImpl implements BookDAO{
     		return null;
     	} */
 
-	@Override
-	public List<Basket> AddProcess(){
+public List<Books> AddToBasket(int bookISBN,String title, float price, int quantity){
+		
+		
+		List<Books> bookInfo = new ArrayList<>();
+		
 		 
-		 boolean addbook = false ;
-		 List<Basket> AList = new ArrayList<>();
 		 con = DatabaseConnection.getConnection();
 		 
-		String query = "INSERT INTO Basket(book_ISBN,quantity, price, total) VALUES(?,?,?,?)";
+		String query = "select title, price from Books where book_ISBN = ?";
+		
 		
 		try {
+			
+			//Get the information of selected book
+			
 			pst = con.prepareStatement(query);
 			
-			rs = pst.executeQuery();
-            Basket A = BMSFactory.AddProcess(rs.getInt("book_ISBN"), rs.getInt("quantity"), rs.getFloat("price"), rs.getDouble("total"));
 			
-			AList.add(A);
+		    pst.setInt(1, bookISBN);
+		    
+		    //get the quantity of selected book 
+		    
+		    pst2 = con.prepareStatement("select quantity from Books where book_ISBN=?");
+		    
+		    //Update quantity 
+		    
+		    pst3 = con.prepareStatement("update Books set quantity = quanity-1 where book_ISBN=?");
+		    
+		    rs1 = pst.executeQuery();
+		    
+		    rs2 = pst2.executeQuery();
+		    
+		    while (rs1.next()) {
+		    	
+		    	title = rs1.getString("title");
+		    	
+		    	price = rs1.getFloat("price");
+		    
+			};
+			while (rs2.next()) {
+				
+				quantity = rs2.getInt("quantity");
+			}
+			if(quantity > 0) {
+				
+				Books b2 = BMSFactory.getBooks2(rs1.getString("title"),rs1.getFloat("price"));
+				
+                bookInfo.add(b2);
+                
+				pst3.execute();
+				
+				return bookInfo;
+			}
+			
 		}
 		catch (SQLException e){
 			
@@ -250,6 +294,7 @@ public class BookDatabaseDAOImpl implements BookDAO{
 		}
 		return null;
 	}
+
 		
 	
 	@Override

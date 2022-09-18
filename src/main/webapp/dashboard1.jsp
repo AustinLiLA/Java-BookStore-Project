@@ -35,7 +35,7 @@ margin-left: 40%
      <li><a href="SearchBookForm2.jsp">Search Books</a></li>
      <li><a href="">Add Book to shopping basket</a></li>
      <li><a href="">Check order History</a></li>
-     <li><a href="">Accounting Details</a></li>
+     <li><a href="http://localhost:8080/bookstore-management-system/UserViewDetailServlet">Accounting Details</a></li>
 
     </ol> 
 <br> 

@@ -2,6 +2,7 @@ package com.ab.factories;
 
 import com.ab.daos.BookDAO;
 import com.ab.daos.BookDatabaseDAOImpl;
+
 import com.ab.models.Basket;
 import com.ab.models.Books;
 import com.ab.services.UserService;
@@ -31,6 +32,11 @@ public class BMSFactory {
 	public static Basket AddProcess(int bookISBN, int quantity, float price, double total){
 		
 	 return new Basket(bookISBN, quantity, price, total);
+	}
+
+	public static Books getBooks2(String title, float price) {
+		
+		return new Books(title, price);
 	}
  }
 

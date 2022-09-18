@@ -10,10 +10,18 @@ public class Books {
 	
 	private String overview;
 	
+	private int quantity;
+	
 	private float price;
     
 	
-
+public Books(String title,float price) {
+		
+		
+		this.title = title;
+		
+		this.price = price;
+	}
 	
 
 public Books(int bookISBN,float price) {

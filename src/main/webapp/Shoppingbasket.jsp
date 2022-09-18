@@ -15,19 +15,15 @@
 <body>
 
 
- <% List<Basket> Addedbooks = (List<Basket>) session.getAttribute("Basket");
-   if (Addedbooks == null){
-	   
-	   Addedbooks = new ArrayList<>();
-	   session.setAttribute("Basket", Addedbooks);
-   }
+ <% List<Books> Addedbooks = (List<Books>) session.getAttribute("AList");
 
- 
+
  %>
  
 <table cellpadding="2", cellspacing="2", border="1">
       <tr>
            <th>ISBN</th>
+            <th>title</th>
            <th>Price</th>
            <th>Quantity</th>
            <th>Sub Total</th>
@@ -38,6 +34,7 @@
         
           
            <td>${A.bookISBN} </td>
+           <td>${A.title} </td>
            <td>${A.price} </td>
            <td>${A.quantity} </td>
            <td>${A.price * quantity}</td>

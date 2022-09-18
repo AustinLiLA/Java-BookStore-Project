@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-
+import com.ab.factories.UMSFactory;
 import com.ab.models.User;
 import com.ab.utilities.DatabaseConnection;
 
@@ -87,6 +89,41 @@ public class UserDatabaseDAOImpl implements UserDAO{
 		}
 		
 		return loginStatus;
+	}
+
+
+	@Override
+	public List<User> viewDetail(String userEmail) {
+	    
+		con = DatabaseConnection.getConnection();
+		
+		String query = "Select * from user where user_email = ? "; 
+		
+		List<User> u = new ArrayList<>();
+		
+		try {
+			
+					
+			pst = con.prepareStatement(query);
+			
+		    pst.setString(1, userEmail);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				
+				User detail = UMSFactory.getUserDetail(rs.getInt("userId"), rs.getString("userName"), rs.getString("userEmail"), rs.getString("userPassword"));
+				
+				u.add(detail);
+			}
+			return u;
+		}
+		
+		catch(SQLException e) {
+			
+			System.out.println(e);
+		}
+		return null;
 	}
 
 

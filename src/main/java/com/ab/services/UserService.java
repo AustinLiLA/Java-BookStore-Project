@@ -19,5 +19,7 @@ public interface UserService {
 	
 	public List<Books> AddBooks(int bookISBN, String title, float price);
 	
-	public List<Basket> AddProcess();
+	public List<Books> AddToBasket(int bookISBN,String title, float price, int quantity);
+	
+	public List<User> viewDetail(String userEmail);
 }

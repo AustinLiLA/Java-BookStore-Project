@@ -13,10 +13,15 @@ public interface BookDAO {
 	
 	public List<Books> AddBooks(int bookISBN, String title,float price);
 	
-	public List<Basket> AddProcess();
+	public static List<Books> AddToBasket(int bookISBN,String title, float price,int quantity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	public List<Basket> ViewBasket();
 
+	
 
 	
 }

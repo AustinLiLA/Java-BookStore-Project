@@ -19,6 +19,11 @@ public static User getCustomUser(String userName, String userEmail, String userP
 	
 	return new User(userName, userEmail, userPassword);
 }
+
+public static User getUserDetail(int userId, String userName, String userEmail, String userPassword) {
+	
+	return new User(userId, userName, userEmail, userPassword);
+}
 	
 public static UserDAO userDAO() {
 	
