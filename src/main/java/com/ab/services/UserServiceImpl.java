@@ -52,7 +52,7 @@ public UserServiceImpl(BasketDAO basketDAO) {
 	@Override
 	public List<Books> searchBooks(int bookISBN, String author){
 		
-		return this.bookDAO.searchBooks(bookISBN, author);
+		return this.bookDAO.searchBooksByISBN(bookISBN);
 	}
 	
     @Override

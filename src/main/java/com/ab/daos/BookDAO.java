@@ -9,7 +9,9 @@ public interface BookDAO {
 
 	public List<Books> loadBooks();
 	
-	public List<Books> searchBooks(int bookISBN, String author);
+	public List<Books> searchBooksByISBN(int bookISBN);
+	
+	public List<Books> searchBooksByAuthor(String author);
 	
 	public List<Books> AddBooks(int bookISBN, String title,float price);
 	

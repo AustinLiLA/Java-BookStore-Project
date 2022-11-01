@@ -25,8 +25,7 @@
            <th>ISBN</th>
             <th>title</th>
            <th>Price</th>
-           <th>Quantity</th>
-           <th>Sub Total</th>
+        
            <th>Option</th>
       </tr>
        <c:forEach items="${AList}" var="A">
@@ -36,8 +35,8 @@
            <td>${A.bookISBN} </td>
            <td>${A.title} </td>
            <td>${A.price} </td>
-           <td>${A.quantity} </td>
-           <td>${A.price * quantity}</td>
+          
+          
             <td align="center">Remove </td>
         </tr>
        

@@ -43,7 +43,8 @@ public class AddtoBasketServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+ 
+		
 		 
          int bookNum = 0 ; // The number of books in shopping basket;
          
@@ -54,17 +55,31 @@ public class AddtoBasketServlet extends HttpServlet {
 	    String title = request.getParameter("title");
 	    
 	    float price = Float.parseFloat(request. getParameter("price"));
-	    		
-	    int quantity = Integer.parseInt(request.getParameter("quantity"));
 	    
+	    
+	    Books b1 = new Books(book_ISBN,title, price);
+	    
+	    
+	    System.out.println(book_ISBN);
+	    		
+	   /*int quantity = Integer.parseInt(request.getParameter("quantity")); */
+	   int quantity = 0;
 		
         UserService userService = BMSFactory.getUserService();
 	    
-	   List<Books> AddedBook= userService.AddToBasket(book_ISBN, title , price, quantity);
+	  // List<Books> AddedBook= userService.AddToBasket(book_ISBN, title , price, quantity);
 	    		
 		HttpSession session = request.getSession(true);
 		
-		session.setAttribute("AList", AddedBook);
+		List<Books> sessionBooks = (List<Books>)session.getAttribute("AList");
+		
+		if(sessionBooks == null) {
+			sessionBooks = new ArrayList<>();
+		}
+		
+		sessionBooks.add(b1);
+		
+		session.setAttribute("AList", sessionBooks);
 		
 		response.sendRedirect("Shoppingbasket.jsp");
 		}

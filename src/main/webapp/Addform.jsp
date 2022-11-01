@@ -42,7 +42,7 @@
           <td><c:out value="${a.title}" /></td>
            <td><c:out value="${a.price}" /></td>
           <td>
-          <a href="http://localhost:8080/bookstore-management-system/AddtoBasketServlet">Add</a>
+          <a href="http://localhost:8080/bookstore-management-system/AddtoBasketServlet?bookISBN=<c:out value="${a.bookISBN}" />&title=<c:out value="${a.title}" />&price=<c:out value="${a.price}" />">Add</a>
           </td>
         </tr>
       </c:forEach>

@@ -82,13 +82,13 @@ public class BookDatabaseDAOImpl implements BookDAO{
 	}
 
 	@Override
-	public List<Books> searchBooks(int bookISBN, String author) {
+	public List<Books> searchBooksByISBN(int bookISBN) {
 		con = DatabaseConnection.getConnection();
 		
 	  
 		String searchbookresult = null;
 		
-		String query = "SELECT * FROM books WHERE book_ISBN= ? or author = ? ";
+		String query = "SELECT * FROM books WHERE book_ISBN= ? ";
 		
 		
 		
@@ -96,7 +96,7 @@ public class BookDatabaseDAOImpl implements BookDAO{
 			pst = con.prepareStatement(query);
 			pst.setInt(1, bookISBN);
 			
-			pst.setString(2, author);
+			
 			rs = pst.executeQuery();
 			List<Books> searchbList = new ArrayList<>();
 		
@@ -301,6 +301,12 @@ public List<Books> AddToBasket(int bookISBN,String title, float price, int quant
 	public List<Basket> ViewBasket() {
 		
 			
+		return null;
+	}
+
+	@Override
+	public List<Books> searchBooksByAuthor(String author) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -34,7 +34,8 @@ public class SearchBooksServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bookISBN = Integer.parseInt(request.getParameter("bookISBN"));
+		/*int bookISBN = Integer.parseInt(request.getParameter("bookISBN"));*/
+		int bookISBN = 0;
 		String author = request.getParameter("author");
 		
         UserService userService = BMSFactory.getUserService();
